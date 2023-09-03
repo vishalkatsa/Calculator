@@ -1,9 +1,10 @@
 let x = "";
+let screen = document.getElementById('screen');
+let un = undefined;
+console.log(screen.target)
+
 let ispercentage = false;
 let firVal;
-
-
-
 
 let ButtonValue = document.querySelectorAll('.All-button-class');
 Array.from(ButtonValue).forEach((Data1) => {
@@ -22,6 +23,7 @@ Array.from(ButtonValue).forEach((Data1) => {
             x = eval(x)
             document.querySelector('.inputvk').value = x;
         }
+
         else if (v.target.innerHTML === '%') {
             ispercentage = true
             firVal = x;
@@ -30,6 +32,11 @@ Array.from(ButtonValue).forEach((Data1) => {
 
             // x =   (x * sec) / 100;
 
+        }
+        else if (x== undefined){
+           consolel.log(x)
+            x = "vkr";
+            document.querySelector('.inputvk').value = x;
         }
         else if (v.target.innerHTML === "DEL") {
             x = x.slice(0, -1)
