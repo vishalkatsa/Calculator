@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.hi1{
+    text-align: center;
+}
+.center-div{
+    display: flex;
+    justify-content: center;
+}
+.main-div{
+    background-color: rgb(0, 0, 0);
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+    border-radius: 5px;
+}
+.All-button-class{
+    background-color: rgb(62, 62, 62);
+    color: rgb(255, 255, 255);
+    width: 60px;
+    height: 60px;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.yellow{
+    background-color: rgb(255, 183, 0);
+}
+.orange{
+    background-color: orangered;
+}
+.blackwhite{
+    background-color: rgb(62, 62, 62);
+    color: rgba(0, 255, 0, 0.89);
+}
+.input-input{
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+    width: 300px;
+    font-size: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+     
+}
+input::placeholder{
+    color: white;
+}
