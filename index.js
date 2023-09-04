@@ -1,86 +1,70 @@
-let x = "";
-let screen = document.getElementById('screen');
-let un = undefined;
-console.log(screen.target)
+// "use strict"
+let string = "";
 
 let ispercentage = false;
-let firVal;
+let firvalue;
 
-let ButtonValue = document.querySelectorAll('.All-button-class');
-Array.from(ButtonValue).forEach((Data1) => {
-    Data1.addEventListener("click", (v) => {
-        // console.log(v.target)
+let Allbuttons = document.querySelectorAll('.All-button-class');
+Array.from(Allbuttons).forEach(function(LisClick){
+    
+        LisClick.addEventListener('click', function(e){
 
-        if (v.target.innerHTML === '=') {
-            if (ispercentage) {
-                let per = (firVal * x) / 100;
-                x = per
-                document.querySelector('.inputvk').value = x;
-                ispercentage = false;
-                return
-                // console.log(firVal , x , per)
+            if(e.target.innerHTML === '='){
+               if(ispercentage) {
+                    let Per = (firvalue * string)/100;
+                    string = Per;
+                    document.querySelector('.inputvk').value = string
+                }
+                /////////////////////////////////////////////
+                string = eval(string)
+                document.querySelector('.inputvk').value = string;
             }
-            x = eval(x)
-            document.querySelector('.inputvk').value = x;
-        }
+            else if (e.target.innerHTML === "%"){
+                ispercentage = true;
+                firvalue = string ;
+                string = ""
+            }
+///////// esle if for Double (+ ,- , * , /) stop /////////////
+            else if(['+','-','*','/'].includes(e.target.value)){
+                let displayE = document.querySelector('.inputvk');
+                let inputX = displayE.value;
 
-        else if (v.target.innerHTML === '%') {
-            ispercentage = true
-            firVal = x;
-            console.log("pv", firVal)
-            x = ""
+                let RemoveDoubel = inputX.charAt(inputX.length -1);
+                if(['+','-','*','/'].includes(RemoveDoubel) && ['+','-','*','/'].includes(e.target.value)){
+                    inputX = inputX
+                } 
+                else {
+                    inputX += e.target.value;
+                    string = inputX
+                }
+                displayE.value = inputX;
+            }
+///////// else if for Clean(C) //////////////
+            else if(e.target.innerHTML === 'C'){
+                string = "";
+                document.querySelector('.inputvk').value = string;
+            }
+///////// else if for Delete (DEL) //////////
+            else if (e.target.innerHTML === "DEL"){
+                string = string.slice(0,-1);
+                document.querySelector('.inputvk').value = string;            
+            }
+///////// Default //////////////////////////
+            else{
+///////// remove before 0 ////////////
+                if(string.charAt(0) == '0'){
+                  string = string.slice(1,0)
+                }
+                string = string + e.target.innerHTML;
+                document.querySelector('.inputvk').value = string;
 
-            // x =   (x * sec) / 100;
+            }
+ 
+ 
+            
+        })
+    });
 
-        }
-        else if (x== undefined){
-           consolel.log(x)
-            x = "vkr";
-            document.querySelector('.inputvk').value = x;
-        }
-        else if (v.target.innerHTML === "DEL") {
-            x = x.slice(0, -1)
-            document.querySelector('.inputvk').value = x;
 
-        }
         
-        /////////////////////////// single + - * / Code ////////////////////////////////
-        else if (['*', '+', '-', '/'].includes(v.target.value)) {
 
-            let inputElement = document.querySelector('.inputvk');
-
-            let inputValue = inputElement.value;
-
-            let lastCharacter = inputValue.charAt(inputValue.length - 1);
-
-            if (['*', '+', '-', '/'].includes(lastCharacter) && ['*', '+', '-', '/'].includes(v.target.value)) {
-                inputValue = inputValue
-
-            } else {
-                inputValue += v.target.value;
-                x = inputValue
-
-            }
-            inputElement.value = inputValue;
-
-
-        }
-
-        else if (v.target.innerHTML == "C") {
-            x = "";
-            document.querySelector('.inputvk').value = x;
-        }
-        else {
-            if (x.charAt(0) == '0') {
-                x = x.slice(1, 0)
-            }
-            x = x + v.target.innerHTML;
-            console.log("input", x)
-            document.querySelector('.inputvk').value = x;
-        };
-
-
-    })
-})
-
-// document.getElementById("gg").innerHTML = 80 * 10 / 100
